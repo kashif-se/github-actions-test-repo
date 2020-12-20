@@ -1,10 +1,10 @@
 #!/bin/bash
 
 git pull
-cd /app/
+cd ./app
 yarn install && yarn build
 cd ..
-cd /bot/
+cd ./bot
 yarn install
 cd ~/
 pm2 start ecosystem.config.js --env production
