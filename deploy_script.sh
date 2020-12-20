@@ -1,9 +1,10 @@
 #!/bin/bash
-# Run docker
+
+git pull
 cd /app/
-git pull && yarn install && yarn build
+yarn install && yarn build
 cd ..
 cd /bot/
-git pull && yarn install
+yarn install
 cd ~/
 pm2 start ecosystem.config.js --env production

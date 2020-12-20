@@ -1,29 +1,27 @@
 ## hCaptcha Telegram Bot
 
-1 Install NodeJS
+1. Install NodeJS
 
 ```
 curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 sudo apt-get install -y nodejs
 ```
 
-2 Install Yarn and PM2
+2. Install Yarn and PM2
 
 ```npm install -g yarn pm2```
 
-3 Install Git
+3. Clone repo
 
-```sudo apt install git-all```
-
-4 Clone repo
-
-```git clone $URL```
+```git clone git@github.com:pytour/hcaptcha-project.git```
 
 
-5 Install Docker MongoDB RabbitMQ
+4. Install Docker MongoDB RabbitMQ
 
+```
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
+```
 
 
 
