@@ -2,7 +2,8 @@ const amqp = require("amqplib/callback_api");
 
 // Producer
 module.exports.notification = (chatId, userId, message) => {
-  amqp.connect("amqp://localhost", function (error0, connection) {
+  const opt = { credentials: require('amqplib').credentials.plain('rabbitmq', 'rabbitmq') };
+  amqp.connect("amqp://localhost", opt, function (error0, connection) {
     if (error0) {
       throw error0;
     }

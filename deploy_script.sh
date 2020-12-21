@@ -2,9 +2,9 @@
 
 git pull
 cd ./app
-yarn install && yarn build
+npm install && npm run build
 cd ..
 cd ./bot
-yarn install
+npm install
 cd ~/
 pm2 start ecosystem.config.js --env production
