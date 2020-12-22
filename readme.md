@@ -7,53 +7,40 @@ curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 sudo apt-get install -y nodejs
 ```
 
-2. Install Yarn and PM2
+2. Install PM2
 
-```npm install -g yarn pm2```
+`npm install -g pm2`
 
 3. Clone repo
 
-```git clone git@github.com:pytour/hcaptcha-project.git```
+`git clone git@github.com:pytour/hcaptcha-project.git`
 
 Add environment variables
 
-- For nextjs app
-touch ./app/.env.local
+For nextjs app
+
+`touch ./app/.env.local`
+
+
 
 4. Install Docker MongoDB RabbitMQ
 
-```
-apt  install docker.io docker-compose
-```
+- Install Docker & docker-compose
 
+`apt  install docker.io docker-compose`
 
+- Create `stack.yml` (see stack.yml.example)
 
-https://hub.docker.com/_/mongo
+- Run docker-compose
 
-Run 
+```docker-compose -f stack.yml up -d```
 
+To check that it work properly run: 
 
+```docker-compose ps```
 
-```docker stack deploy -c stack.yml mongo```
+5. Create `ecosystem.config.js` file (see ecosystem.config.js.example) 
 
-or 
-```docker-compose -f stack.yml up```
- 
-wait for it to initialize completely, and visit http://swarm-ip:8081, http://localhost:8081, or http://host-ip:8081 (as appropriate).
+6. Build and Run project (Telegram Bot and NextJS app): 
 
-
-
-Container shell access and viewing MongoDB logs
-
-```docker exec -it some-mongo bash```
-
-```docker logs some-mongo```
-
-
-
-```
-docker run -d --name container_name \
-      -e MONGO_INITDB_ROOT_USERNAME=admin \
-      -e MONGO_INITDB_ROOT_PASSWORD=15Qwerty15 \
-      mongo
-```
+`bash deploy_script.sh`
