@@ -1,5 +1,7 @@
 ## hCaptcha Telegram Bot
 
+### How to install
+
 1. Install NodeJS 12.x
 
 ```

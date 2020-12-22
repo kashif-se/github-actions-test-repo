@@ -11,14 +11,17 @@ module.exports = async (ctx) => {
   // Only messages
   if (!ctx.message) return;
 
+  // Save meesage date
+  ctx.session.lastMsgDate = new Date().toJSON();
+
   // If chat admin skip restrictions
 
   if (ctx.message.new_chat_participant) {
     await newChatParticipant(ctx);
   } else if (ctx.message.left_chat_participant) {
-    await leftChatParticipant(ctx)
+    await leftChatParticipant(ctx);
   } else if (ctx.message.text) {
-    await textMessage(ctx)
+    await textMessage(ctx);
   }
   console.log("Session:", ctx.session);
 };

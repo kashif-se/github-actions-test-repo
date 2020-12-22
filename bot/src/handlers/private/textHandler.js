@@ -4,6 +4,7 @@ const { getAllCaptchasCount } = require("../../db/controllers/captcha");
 const adminMenu = require("../../keyboards/adminMenu");
 const menu = require("../../keyboards/menu");
 const isAdmin = require("../../utils/isAdmin");
+const { getAllSessionsCount } = require("../../db/controllers/session");
 
 /**
  * Text messages in private chats (simple messages and buttons)
@@ -20,24 +21,24 @@ module.exports = async (ctx) => {
       let msg = text;
       if (text === "Groups") {
         let groups = await getAllGroups();
-        msg += "\nTotal groups: " + groups.length + '\n';
+        msg += "\nTotal groups: " + groups.length + "\n";
         let i = 0;
         for (const group of groups) {
           if (i > 30) break;
           i++;
           msg += `\n${i}) ` + group.title;
-          if (group.username) msg += ` @` + group.username
+          if (group.username) msg += ` @` + group.username;
         }
       } else if (text === "Stats") {
         let groups = await getAllGroups();
-        let captchasCount = await getAllCaptchasCount()
-        let captchasSolvedCount = await getAllCaptchasCount("SOLVED")
-        msg += "\n\nTotal groups: " + groups.length + '\n';
-        msg += "\nTotal captchas: " + captchasCount + '\n';
-        msg += "\nCaptchas solved: " + captchasSolvedCount + '\n';
+        let captchasCount = await getAllCaptchasCount();
+        let captchasSolvedCount = await getAllCaptchasCount("SOLVED");
+        let totalSessions = await getAllSessionsCount();
+        msg += "\n\nTotal groups: " + groups.length + "\n";
+        msg += "\nTotal captchas: " + captchasCount + "\n";
+        msg += "\nCaptchas solved: " + captchasSolvedCount + "\n";
         // todo
-        msg += "\nTotal users: " + '\n';
-        
+        msg += "\nTotal users: " + totalSessions + "\n";
       }
       return ctx.replyWithHTML(
         msg,

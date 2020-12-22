@@ -6,5 +6,5 @@ npm install && npm run build
 cd ..
 cd ./bot
 npm install
-cd ~/
+cd ..
 pm2 start ecosystem.config.js --env production
