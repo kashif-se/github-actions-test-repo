@@ -37,7 +37,6 @@ module.exports = async (ctx) => {
         msg += "\n\nTotal groups: " + groups.length + "\n";
         msg += "\nTotal captchas: " + captchasCount + "\n";
         msg += "\nCaptchas solved: " + captchasSolvedCount + "\n";
-        // todo
         msg += "\nTotal users: " + totalSessions + "\n";
       }
       return ctx.replyWithHTML(

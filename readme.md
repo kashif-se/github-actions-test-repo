@@ -46,3 +46,45 @@ To check that it work properly run:
 6. Build and Run project (Telegram Bot and NextJS app): 
 
 `bash deploy_script.sh`
+
+
+7. Setup Nginx 
+
+`sudo apt install nginx`
+
+Edit our default nginx site file
+
+`sudo vim /etc/nginx/sites-available/default`
+
+
+```
+server {
+    listen 80;
+
+    server_name _;
+
+    location / {
+        # reverse proxy for next server
+        proxy_pass http://localhost:8000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+
+        # we need to remove this 404 handling
+        # because next's _next folder and own handling
+        # try_files $uri $uri/ =404;
+    }
+}
+```
+
+Test the configuration of Nginx:
+
+`sudo nginx -t`
+
+Reload Nginx:
+
+`sudo /etc/init.d/nginx reload`
+
+Thats it 🚀
