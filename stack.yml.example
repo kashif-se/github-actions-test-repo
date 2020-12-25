@@ -32,3 +32,29 @@ services:
       - "5672:5672"
     labels:
       NAME: "rabbitmq1"
+  hcaptchabot:
+    image: hcaptchabot
+    restart: always
+    environment:
+      MONGO_URL: "mongodb://root:15Qwerty15@mongo:27017/hcaptcha?authSource=admin"
+      BOT_TOKEN: ""
+      BOT_NAME: ""
+      BOT_ID: 
+      ADMINS: ""
+      TIMEOUT: 1
+      WEBAPP_URI: "http://hcaptchabot.xyz"
+      RABBIT_MQ_SERVER: "rabbit1"
+      RABBIT_MQ_USER: "rabbitmq"
+      RABBIT_MQ_PASS: "rabbitmq"
+  hcaptchaweb:
+    image: hcaptchaweb
+    restart: always
+    environment:
+      ENV_LOCAL_MONGODB_URI: "mongodb://root:15Qwerty15@mongo:27017/hcaptcha?authSource=admin"
+      ENV_LOCAL_HCAPTCHA_KEY: ""
+      ENV_LOCAL_HCAPTCHA_SECRET: ""
+      RABBIT_MQ_SERVER: "rabbit1"
+      RABBIT_MQ_USER: "rabbitmq"
+      RABBIT_MQ_PASS: "rabbitmq"
+    ports:
+      - 8000:8000
