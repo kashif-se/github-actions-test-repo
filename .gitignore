@@ -40,3 +40,4 @@ yarn-error.log*
 
 ecosystem.config.js
 stack.yml
+docker-compose.yml
