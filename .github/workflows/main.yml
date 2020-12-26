@@ -22,11 +22,16 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+    - name: Login to DockerHub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
     - name: Build docker image for app
       uses: docker/build-push-action@v2.2.1
       with:
         context: ./app
-        tags: kshfse/hcaptcha_web
+        tags: kshfse/hcaptcha_web:latest
         push: true
         file: ./app/Dockerfile
     - name: executing remote ssh commands using password
