@@ -39,14 +39,14 @@ jobs:
       uses: docker/build-push-action@v2.2.1
       with:
         context: ./app
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/hcaptcha_web:latest
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/hcaptcha_web:git
         push: true
         file: ./app/Dockerfile
     - name: Build docker image for Bot
       uses: docker/build-push-action@v2.2.1
       with:
         context: ./bot
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/hcaptcha_bot:latest
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/hcaptcha_bot:git
         push: true
         file: ./bot/Dockerfile
     
@@ -58,5 +58,5 @@ jobs:
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
         script: |
-          cd docker_build
-          ls -al
+          cd /docker_build/hcaptcha-project
+          docker-compose up -d
