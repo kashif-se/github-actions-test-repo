@@ -50,7 +50,7 @@ jobs:
         push: true
         file: ./bot/Dockerfile
     
-    - name: executing remote ssh commands using password
+    - name: Updating containers on remote server
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
@@ -58,5 +58,5 @@ jobs:
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
         script: |
-          cd /docker_build/hcaptcha-project
+          cd /root/docker_build/hcaptcha-project
           docker-compose up -d
