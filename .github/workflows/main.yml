@@ -42,13 +42,14 @@ jobs:
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/hcaptcha_web:latest
         push: true
         file: ./app/Dockerfile
-    - name: Build docker image for app
+    - name: Build docker image for Bot
       uses: docker/build-push-action@v2.2.1
       with:
         context: ./bot
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/hcaptcha_bot:latest
         push: true
         file: ./bot/Dockerfile
+    
     - name: executing remote ssh commands using password
       uses: appleboy/ssh-action@master
       with:
